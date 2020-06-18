@@ -52,12 +52,16 @@ def degree_to_direction(degree):
     return directions[(value % 16)] # 16 directions
 
 # rain fallen in the past hour (mm) and cloud coverage as a %
-rain    = get_weather_json['rain']['1h']
+try: # if there is any rain
+    rain = get_weather_json['rain']['1h']
+except:
+    rain = 0 # there is no rain
+
 clouds  = get_weather_json['clouds']['all']
 
 # display the information in a readable format
 print(f"Weather for {city_name}\nToday there will be {description}")
 print(f"Current temperature is {temperature} C but will feel like {feels_like} C")
 print(f"Atmospheric pressure {pressure} - Humidity {humidity}%")
-print(f"Wind speed {wind_speed}mph - {degree_to_direction(wind_degree)}")
+print(f"Wind speed {wind_speed}mph coming from {degree_to_direction(wind_degree)}")
 print(f"{rain}mm of rain fallen in the last hour and {clouds}% cloud coverage")
