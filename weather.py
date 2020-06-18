@@ -20,24 +20,26 @@ get_weather = requests.get(
 get_weather_json = get_weather.json()
 
 # return the data
-kelvin      = 273 # api temperatures are in kelvin (-273 to get celcius)
-
 weather     = get_weather_json['weather'][0]['main']
 description = get_weather_json['weather'][0]['description']
 
 # temperature in celcius to 1 decimal place
+kelvin      = 273 # api temperatures are in kelvin (-273 to get celcius)
 temperature = round(((get_weather_json['main']['temp']) - kelvin), 1)
 feels_like  = round(((get_weather_json['main']['feels_like']) - kelvin), 1)
 
+# pressure and humidity
 pressure    = get_weather_json['main']['pressure']
 humidity    = get_weather_json['main']['humidity']
 
 # wind speed - defauts to metres per second and degrees
 # converted to miles per hour and compass direction
 mph         = 2.2369 # mulitply by mph to convert from metres per second
-wind_speed  = get_weather_json['wind']['speed']
+            # round wind speed to one decimal place
+wind_speed  = round(get_weather_json['wind']['speed'] * mph, 1)
 wind_degree = get_weather_json['wind']['deg']
 
+# change from degree to compass direction
 def degree_to_direction(degree):
     # compass directions change for every 22.5 degrees
     # adding 0.5 is to ensure the value can't be equal to two directions
@@ -52,6 +54,7 @@ def degree_to_direction(degree):
 rain    = get_weather_json['rain']['1h']
 clouds  = get_weather_json['clouds']['all']
 
+# display the information in a readable format
 print(f"Weather for {city_name}\nToday there will be {description}")
 print(f"Current temperature is {temperature} C but will feel like {feels_like} C")
 print(f"Atmospheric pressure {pressure} - Humidity {humidity}%")
