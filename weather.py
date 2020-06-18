@@ -20,7 +20,8 @@ get_weather = requests.get(
 get_weather_json = get_weather.json()
 
 # return the data
-weather     = get_weather_json['weather'][0]['main']
+
+# description of the weather today
 description = get_weather_json['weather'][0]['description']
 
 # temperature in celcius to 1 decimal place
