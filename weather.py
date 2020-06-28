@@ -3,9 +3,9 @@
 
 import requests
 
-city_name = 'Leicester'  # name of the city
-country = 'GB'  # use ISO 3166 country code e.g. GB
-api_key = '8f0da511343891f24d89ac7302015193'  # enter your api key here
+city_name = ''  # name of the city
+country = ''  # use ISO 3166 country code e.g. GB
+api_key = ''  # enter your api key here
 
 # connect to the api
 get_weather = requests.get(
