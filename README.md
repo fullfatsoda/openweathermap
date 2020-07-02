@@ -3,6 +3,10 @@
 Usage of the openweathermap.org API to generate local weather data from a given city and country.
 Will require you to use your own API key, which you can get for free from https://api.openweathermap.org/
 
+## Requirements
+
+Requests library - `pip install requests`
+
 ## Usage
 
 Edit the values
